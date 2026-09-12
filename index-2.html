@@ -1,0 +1,1051 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Farah — UX/UI Designer</title>
+<meta name="description" content="Farah is a UX/UI designer working on SaaS products, brand identity, and accessible interfaces.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Familjen+Grotesk:ital,wght@0,400;0,500;0,600;0,700;1,600&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --paper:#E8E9E3;
+  --surface:#FCFCFA;
+  --ink:#15171A;
+  --muted:#5C6159;
+  --accent:#2626D6;
+  --line:#C9CBC2;
+
+  --display:"Familjen Grotesk", system-ui, sans-serif;
+  --body:"Source Serif 4", Georgia, serif;
+  --mono:"IBM Plex Mono", ui-monospace, monospace;
+
+  --art-bg:#15171A;
+  --art-ink:#FCFCFA;
+  --art-accent:#8A8AF0;
+
+  --wrap:1100px;
+  --gap:clamp(3.5rem, 9vw, 7rem);
+  color-scheme:light;
+}
+
+[data-theme="dark"]{
+  --paper:#131417;
+  --surface:#1B1D21;
+  --ink:#ECECE6;
+  --muted:#9B9C94;
+  --accent:#9A9AF5;
+  --line:#32353B;
+
+  --art-bg:#0C0D0F;
+  --art-ink:#ECECE6;
+  --art-accent:#9A9AF5;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--body);font-size:1.0625rem;line-height:1.65;-webkit-font-smoothing:antialiased}
+body.locked{overflow:hidden}
+img{max-width:100%;display:block}
+
+.wrap{width:100%;max-width:var(--wrap);margin:0 auto;padding:0 clamp(1.25rem,5vw,2.5rem)}
+h1,h2,h3,h4{font-family:var(--display);font-weight:600;letter-spacing:-0.02em;line-height:1.06;margin:0}
+p{margin:0 0 1.1rem}
+a{color:var(--accent);text-underline-offset:3px}
+:focus-visible{outline:3px solid var(--accent);outline-offset:3px;border-radius:2px}
+
+.eyebrow{font-family:var(--mono);font-size:0.7rem;font-weight:500;letter-spacing:0.16em;text-transform:uppercase;color:var(--muted);display:flex;align-items:center;gap:0.6rem;margin:0 0 1.6rem}
+.eyebrow::before{content:"";width:7px;height:7px;background:var(--accent);flex:none}
+
+.skip{position:absolute;left:0.5rem;top:-4rem;z-index:100;background:var(--ink);color:var(--surface);padding:0.7rem 1.1rem;font-family:var(--mono);font-size:0.8rem;text-decoration:none;transition:top .15s}
+.skip:focus{top:0.5rem}
+
+/* header */
+.site-head{position:sticky;top:0;z-index:40;background:color-mix(in srgb,var(--paper) 90%,transparent);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.head-row{display:flex;align-items:center;gap:1.25rem;height:62px}
+.brand{font-family:var(--display);font-weight:700;font-size:1.05rem;color:var(--ink);text-decoration:none;margin-right:auto}
+.brand span{color:var(--accent)}
+.site-nav{display:flex;gap:1.4rem}
+.site-nav a{font-family:var(--mono);font-size:0.78rem;color:var(--ink);text-decoration:none;padding:0.4rem 0;border-bottom:1px solid transparent}
+.site-nav a:hover{border-bottom-color:var(--accent)}
+.socials{display:flex;gap:0.85rem}
+.socials a{font-family:var(--mono);font-size:0.72rem;color:var(--muted);text-decoration:none}
+.socials a:hover{color:var(--accent)}
+.theme-toggle{width:38px;height:38px;flex:none;border-radius:50%;border:1px solid var(--line);background:var(--surface);color:var(--ink);cursor:pointer;display:grid;place-items:center;transition:border-color .18s,background .18s}
+.theme-toggle:hover{border-color:var(--accent)}
+.theme-toggle svg{width:18px;height:18px;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round}
+.theme-toggle .moon{display:none}
+[data-theme="dark"] .theme-toggle .moon{display:block}
+[data-theme="dark"] .theme-toggle .sun{display:none}
+@media (max-width:900px){.site-nav a:nth-child(n+4){display:none}}
+@media (max-width:680px){.site-nav{display:none}}
+
+/* hero */
+.hero{padding:clamp(3.5rem,9vw,6rem) 0 var(--gap)}
+.hero-top{display:flex;align-items:center;gap:1.25rem;margin-bottom:2.25rem;flex-wrap:wrap}
+.avatar{position:relative;width:84px;height:84px;border-radius:50%;overflow:hidden;background:var(--accent);flex:none;display:grid;place-items:center}
+.avatar span{font-family:var(--display);font-weight:700;font-size:2rem;color:#fff}
+.avatar img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.status{font-family:var(--mono);font-size:0.74rem;color:var(--muted);margin:0}
+.hero h1{font-size:clamp(2.3rem,6.4vw,4.4rem);max-width:20ch;margin-bottom:1.6rem}
+.hero h1 em{font-style:italic;font-weight:600;color:var(--accent)}
+.lede{font-size:clamp(1.05rem,2vw,1.2rem);max-width:54ch;color:var(--muted)}
+.lede strong{color:var(--ink);font-weight:600}
+.chips{display:flex;flex-wrap:wrap;gap:0.45rem;list-style:none;margin:2rem 0 0;padding:0}
+.chips li{font-family:var(--mono);font-size:0.7rem;border:1px solid var(--line);border-radius:999px;padding:0.3rem 0.75rem;color:var(--muted);background:var(--surface)}
+.cta-row{display:flex;flex-wrap:wrap;gap:0.75rem;margin-top:2.25rem}
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:0 1.4rem;font-family:var(--mono);font-size:0.8rem;text-decoration:none;border-radius:4px;border:1px solid var(--ink);cursor:pointer;background:transparent;color:var(--ink);transition:transform .18s,background .18s,color .18s}
+.btn-solid{background:var(--ink);color:var(--surface)}
+.btn-solid:hover{background:var(--accent);border-color:var(--accent);transform:translateY(-2px)}
+.btn-ghost:hover{background:var(--ink);color:var(--surface);transform:translateY(-2px)}
+
+/* sections */
+.section{padding:var(--gap) 0;border-top:1px solid var(--line)}
+.section h2{font-size:clamp(1.7rem,3.6vw,2.5rem);max-width:20ch}
+.section-lede{color:var(--muted);max-width:56ch;margin-top:1.4rem}
+
+/* about */
+.about-grid{display:grid;gap:2.5rem;margin-top:2.5rem}
+@media (min-width:820px){.about-grid{grid-template-columns:1.35fr 1fr;gap:4rem}}
+.about-grid p{max-width:58ch;color:var(--ink)}
+.now{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:1.4rem 1.5rem;margin-top:2rem}
+.now h3{font-family:var(--mono);font-size:0.72rem;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;color:var(--accent);margin-bottom:0.7rem}
+.now p{margin:0;font-size:0.98rem;color:var(--muted)}
+.now strong{color:var(--ink);font-weight:600}
+.toolkit{list-style:none;margin:0;padding:0;border-top:1px solid var(--line)}
+.toolkit li{font-family:var(--mono);font-size:0.8rem;padding:0.7rem 0;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;gap:1rem;color:var(--muted)}
+.toolkit li span{color:var(--ink)}
+.edu{list-style:none;margin:2rem 0 0;padding:0}
+.edu li{padding:1.1rem 0;border-top:1px solid var(--line)}
+.edu h4{font-size:1.05rem;font-weight:600;margin-bottom:0.2rem}
+.edu p{margin:0;font-family:var(--mono);font-size:0.74rem;color:var(--muted)}
+
+/* timeline */
+.timeline{list-style:none;margin:2.75rem 0 0;padding:0 0 0 1.6rem;border-left:2px solid var(--line)}
+.timeline>li{position:relative;padding:0 0 2.4rem}
+.timeline>li:last-child{padding-bottom:0}
+.timeline>li::before{content:"";position:absolute;left:calc(-1.6rem - 7px);top:0.4rem;width:12px;height:12px;border-radius:50%;background:var(--paper);border:2px solid var(--accent)}
+.timeline>li.past::before{border-color:var(--line);background:var(--line)}
+.meta{display:flex;flex-wrap:wrap;gap:0.5rem 1rem;font-family:var(--mono);font-size:0.72rem;letter-spacing:0.06em;text-transform:uppercase;color:var(--muted);margin:0 0 0.45rem}
+.meta .here{color:var(--accent)}
+.role{font-family:var(--display);font-weight:600;font-size:clamp(1.2rem,2.6vw,1.5rem);margin-bottom:0.6rem}
+.timeline p:last-of-type{color:var(--muted);max-width:58ch}
+.timeline ul{margin:0.6rem 0 0;padding-left:1.1rem;color:var(--muted)}
+.timeline ul li{margin-bottom:0.3rem}
+
+/* feature block — one project, full width */
+.feature{display:grid;gap:2rem;margin-top:2.5rem;background:var(--surface);border:1px solid var(--line);border-radius:8px;overflow:hidden}
+@media (min-width:860px){.feature{grid-template-columns:1fr 1fr;gap:0;align-items:stretch}}
+.feature-art{background:var(--art-bg);color:var(--art-ink);display:grid;place-items:center;min-height:260px;position:relative}
+.feature-art svg{width:120px;height:120px}
+.feature-art img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.feature-body{padding:clamp(1.5rem,4vw,2.75rem)}
+.feature h3{font-size:clamp(1.5rem,3vw,2rem);margin:0.4rem 0 1rem}
+.feature p{color:var(--muted)}
+.card-meta{font-family:var(--mono);font-size:0.68rem;letter-spacing:0.13em;text-transform:uppercase;color:var(--muted);margin:0}
+.tags{display:flex;flex-wrap:wrap;gap:0.35rem;list-style:none;margin:1.4rem 0 0;padding:0}
+.tags li{font-family:var(--mono);font-size:0.66rem;border:1px solid var(--line);border-radius:999px;padding:0.18rem 0.6rem;color:var(--muted)}
+.links-row{display:flex;flex-wrap:wrap;gap:1.1rem;margin-top:1.6rem}
+.links-row a,.links-row button{font-family:var(--mono);font-size:0.76rem;color:var(--accent);background:none;border:0;padding:0;cursor:pointer;text-decoration:underline;text-underline-offset:3px}
+.note{font-family:var(--mono);font-size:0.72rem;line-height:1.5;color:var(--muted);border-left:2px solid var(--line);border-radius:0;padding-left:0.75rem;margin:1.4rem 0 0}
+.inside{list-style:none;margin:1.6rem 0 0;padding:0;border-top:1px solid var(--line)}
+.inside li{font-family:var(--mono);font-size:0.74rem;color:var(--muted);padding:0.6rem 0;border-bottom:1px solid var(--line)}
+.inside li b{color:var(--ink);font-weight:500}
+
+/* two-up project grid */
+.grid-2{display:grid;gap:1.5rem;margin-top:2.5rem}
+@media (min-width:760px){.grid-2{grid-template-columns:repeat(2,1fr)}}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:8px;overflow:hidden;display:flex;flex-direction:column;text-align:left;padding:0;cursor:pointer;font:inherit;color:inherit;width:100%;transition:transform .22s,border-color .22s,box-shadow .22s}
+.card:hover{transform:translateY(-4px);border-color:var(--accent);box-shadow:0 14px 30px -22px rgba(21,23,26,.6)}
+.thumb{height:200px;display:grid;place-items:center;background:var(--art-bg);color:var(--art-ink);position:relative}
+.thumb svg{width:82px;height:82px}
+.thumb img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.card-body{padding:1.35rem 1.5rem 1.6rem;display:flex;flex-direction:column;gap:0.6rem;flex:1}
+.card h3{font-size:1.3rem}
+.card p{margin:0;font-size:0.97rem;color:var(--muted)}
+.card .tags{margin:0.3rem 0 0}
+.card .open{margin-top:auto;font-family:var(--mono);font-size:0.72rem;color:var(--accent);padding-top:0.5rem}
+
+/* contact */
+.mailto{font-family:var(--display);font-weight:600;letter-spacing:-0.02em;font-size:clamp(1.4rem,4.4vw,2.6rem);color:var(--ink);text-decoration:none;border-bottom:3px solid var(--accent);display:inline-block;padding-bottom:0.15rem;margin-top:1.5rem}
+.mailto:hover{color:var(--accent)}
+.contact-side{display:flex;flex-wrap:wrap;gap:1.5rem;margin-top:2rem}
+.contact-side a{font-family:var(--mono);font-size:0.8rem}
+.site-foot{border-top:1px solid var(--line);padding:2rem 0 3rem;font-family:var(--mono);font-size:0.72rem;color:var(--muted);display:flex;flex-wrap:wrap;gap:0.75rem;justify-content:space-between}
+
+/* modal */
+.overlay{position:fixed;inset:0;z-index:80;background:rgba(21,23,26,.55);backdrop-filter:blur(3px);display:none;padding:clamp(0.5rem,4vw,3rem)}
+.overlay.open{display:block;overflow-y:auto}
+.sheet{background:var(--paper);border-radius:10px;max-width:840px;margin:0 auto;position:relative;padding:clamp(1.5rem,5vw,3.25rem)}
+.sheet-close{position:sticky;top:0;float:right;width:40px;height:40px;border-radius:50%;border:1px solid var(--line);background:var(--surface);color:var(--ink);font-size:1.1rem;cursor:pointer;z-index:2}
+.sheet-close:hover{background:var(--ink);color:var(--surface)}
+.sheet h3{font-size:clamp(1.8rem,5vw,2.8rem);margin:0.5rem 0}
+.sheet h4{font-family:var(--mono);font-size:0.72rem;font-weight:500;letter-spacing:0.14em;text-transform:uppercase;color:var(--accent);margin:2.2rem 0 0.6rem}
+.sheet h5{font-family:var(--display);font-size:1.2rem;font-weight:600;margin-bottom:0.6rem}
+.sheet p,.sheet li{color:var(--muted)}
+.sheet .kicker{font-family:var(--mono);font-size:0.72rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);margin:0}
+.sheet .sub{font-family:var(--display);font-size:1.1rem;color:var(--ink);margin-bottom:1.5rem}
+.sheet ul{padding-left:1.15rem}
+.sheet ul li{margin-bottom:0.45rem}
+.sheet strong{color:var(--ink)}
+.gallery{display:grid;gap:0.75rem;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));margin-top:1rem}
+.gallery img{border:1px solid var(--line);border-radius:6px;background:var(--surface)}
+
+/* ============ CASE STUDY VIEW ============ */
+[hidden]{display:none !important}
+.site-nav a[aria-current="page"]{border-bottom-color:var(--accent);color:var(--accent)}
+
+.case-hero{padding:clamp(3rem,8vw,5.5rem) 0 clamp(2.5rem,6vw,4rem)}
+.back{font-family:var(--mono);font-size:0.75rem;color:var(--muted);text-decoration:none;display:inline-block;margin-bottom:2rem}
+.back:hover{color:var(--accent)}
+.case-hero h1{font-size:clamp(2.1rem,5.6vw,3.9rem);max-width:19ch;margin-bottom:1.5rem}
+.case-hero h1 em{font-style:italic;font-weight:600;color:var(--accent)}
+.case-lede{font-size:clamp(1.05rem,2vw,1.2rem);max-width:56ch;color:var(--muted)}
+
+.facts{display:grid;gap:0;margin:2.75rem 0 0;padding:0;border-top:1px solid var(--line)}
+@media (min-width:760px){.facts{grid-template-columns:repeat(4,1fr);border-bottom:1px solid var(--line)}}
+.facts div{padding:1rem 0;border-bottom:1px solid var(--line)}
+@media (min-width:760px){.facts div{border-bottom:0;padding:1.1rem 1.25rem 1.1rem 0}}
+.facts dt{font-family:var(--mono);font-size:0.68rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--muted);margin-bottom:0.35rem}
+.facts dd{margin:0;font-family:var(--display);font-weight:600;font-size:1.02rem}
+
+.confidential{background:var(--surface);border:1px solid var(--line);border-left:3px solid var(--accent);border-radius:6px;padding:1.2rem 1.4rem;margin-top:2.5rem}
+.confidential h2{font-family:var(--mono);font-size:0.7rem;font-weight:500;letter-spacing:0.14em;text-transform:uppercase;color:var(--accent);margin-bottom:0.6rem}
+.confidential p{margin:0;font-size:0.95rem;color:var(--muted);max-width:70ch}
+
+.toc{border-top:1px solid var(--line);padding-top:1.5rem;margin-top:2.5rem}
+.toc p{font-family:var(--mono);font-size:0.68rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--muted);margin:0 0 0.9rem}
+.toc ol{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:0.5rem}
+.toc a{font-family:var(--mono);font-size:0.74rem;text-decoration:none;color:var(--ink);border:1px solid var(--line);border-radius:999px;padding:0.32rem 0.85rem;display:inline-block;background:var(--surface)}
+.toc a:hover{border-color:var(--accent);color:var(--accent)}
+
+.chapter{padding:var(--gap) 0;border-top:1px solid var(--line)}
+.chapter h2{font-size:clamp(1.7rem,3.6vw,2.5rem);max-width:20ch}
+.chapter h3{font-size:clamp(1.2rem,2.6vw,1.5rem);margin:2.5rem 0 0.8rem}
+.chapter p{max-width:64ch;color:var(--muted)}
+.chapter p.hi{color:var(--ink)}
+.chapter ul{color:var(--muted);max-width:64ch;padding-left:1.15rem}
+.chapter ul li{margin-bottom:0.45rem}
+.chapter strong{color:var(--ink);font-weight:600}
+.chapter-lede{font-size:1.1rem;margin-top:1.4rem}
+
+.shot{margin:2rem 0 0}
+.frame{position:relative;border:1px solid var(--line);border-radius:8px;background:var(--surface);overflow:hidden}
+.frame img{width:100%}
+.frame.empty{border-style:dashed;min-height:230px;display:grid;place-items:center;padding:1.5rem}
+.frame.empty::before{content:"Drop " attr(data-file) " beside this file";font-family:var(--mono);font-size:0.74rem;color:var(--muted);text-align:center;line-height:1.6}
+.shot figcaption{font-family:var(--mono);font-size:0.72rem;color:var(--muted);margin-top:0.7rem;line-height:1.55}
+
+.split{display:grid;gap:1.5rem;margin-top:2.25rem}
+@media (min-width:820px){.split{grid-template-columns:1fr 1fr;gap:1.75rem}}
+.panel{display:flex;flex-direction:column}
+.panel-label{font-family:var(--mono);font-size:0.7rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--muted);display:flex;align-items:center;gap:0.55rem;margin:0 0 0.9rem}
+.panel-label::before{content:"";width:9px;height:9px;border-radius:50%;border:2px solid var(--line);flex:none}
+.panel.now .panel-label{color:var(--accent)}
+.panel.now .panel-label::before{border-color:var(--accent);background:var(--accent)}
+.panel p{font-size:0.98rem;margin-top:1rem;max-width:none}
+.panel .shot{margin-top:0}
+
+.flow{list-style:none;counter-reset:step;margin:2.25rem 0 0;padding:0}
+.flow li{counter-increment:step;position:relative;padding:1.25rem 0 1.25rem 3.2rem;border-top:1px solid var(--line)}
+.flow li:last-child{border-bottom:1px solid var(--line)}
+.flow li::before{content:counter(step,decimal-leading-zero);position:absolute;left:0;top:1.3rem;font-family:var(--mono);font-size:0.8rem;color:var(--accent)}
+.flow h4{font-size:1.05rem;margin-bottom:0.35rem}
+.flow p{margin:0;font-size:0.97rem;color:var(--muted)}
+
+.next{padding:var(--gap) 0;border-top:1px solid var(--line)}
+.next h2{font-size:clamp(1.5rem,3.2vw,2.1rem)}
+.next p{max-width:64ch;color:var(--muted)}
+.btn-row{display:flex;flex-wrap:wrap;gap:0.75rem;margin-top:2rem}
+
+/* motion */
+.reveal{opacity:0;transform:translateY(16px);transition:opacity .6s ease,transform .6s ease}
+.reveal.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{transition-duration:.01ms !important;animation-duration:.01ms !important}
+  .reveal{opacity:1;transform:none}
+  .card:hover,.btn:hover{transform:none}
+}
+</style>
+</head>
+
+<body>
+<script>
+(function () {
+  var saved = null;
+  try { saved = localStorage.getItem('theme'); } catch (e) {}
+  var dark = saved ? saved === 'dark' : window.matchMedia('(prefers-color-scheme: dark)').matches;
+  if (dark) document.documentElement.setAttribute('data-theme', 'dark');
+})();
+</script>
+
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="site-head">
+  <div class="wrap head-row">
+    <a class="brand" href="#top">Farah<span>.</span></a>
+    <nav class="site-nav" aria-label="Sections">
+      <a href="#about">About</a>
+      <a href="#experience">Experience</a>
+      <a href="#product">Product</a>
+      <a href="#case">Case study</a>
+      <a href="#identity">Identity</a>
+      <a href="#thesis">Thesis</a>
+    </nav>
+    <div class="socials">
+      <a href="mailto:farahsalama17@gmail.com">Email</a>
+      <a href="https://www.linkedin.com/in/farah-salama-739a802b8?" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="https://github.com/Farahsal" target="_blank" rel="noopener">GitHub</a>
+    </div>
+    <button class="theme-toggle" type="button" id="themeToggle" aria-pressed="false" aria-label="Switch to dark mode">
+      <svg class="sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.5"/><path d="M12 2v2.5M12 19.5V22M2 12h2.5M19.5 12H22M4.9 4.9l1.8 1.8M17.3 17.3l1.8 1.8M19.1 4.9l-1.8 1.8M6.7 17.3l-1.8 1.8"/></svg>
+      <svg class="moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.5A8.5 8.5 0 019.5 4a8.5 8.5 0 1010.5 10.5z"/></svg>
+    </button>
+  </div>
+</header>
+
+<main id="main">
+
+<!-- ============================================================
+     VIEW 1 — HOME
+     ============================================================ -->
+<div id="view-home">
+
+  <!-- ============ HERO ============ -->
+  <section class="hero wrap" id="top">
+    <div class="hero-top">
+      <!-- drop a photo.jpg next to this file and it appears here automatically -->
+      <div class="avatar">
+        <span aria-hidden="true">F</span>
+        <img src="photo.jpg" alt="Farah" onerror="this.remove()">
+      </div>
+      <p class="status">Open to junior and mid UX/UI roles</p>
+    </div>
+
+    <h1>Hey, I'm Farah — a <em>UX/UI designer</em> who makes dense software feel <em>simple</em>.</h1>
+
+    <p class="lede">
+      Junior designer on a <strong>SaaS product team</strong> and a final-year student at TU&#8209;Sofia.
+      I take tangled requirements and turn them into screens people can move through without thinking.
+      On the side: logos and brand identities, and a WCAG&nbsp;2.1 audit tool I designed and built myself.
+    </p>
+
+    <ul class="chips">
+      <li>Product UI</li><li>Design systems</li><li>Logo &amp; identity</li><li>Accessibility</li><li>Figma</li><li>Illustrator</li><li>HTML · CSS · JS</li>
+    </ul>
+
+    <div class="cta-row">
+      <a class="btn btn-solid" href="#product">See the work</a>
+      <a class="btn btn-ghost" href="#contact">Get in touch</a>
+    </div>
+  </section>
+
+  <!-- ============ ABOUT ============ -->
+  <section class="section wrap reveal" id="about">
+    <p class="eyebrow">Who I am</p>
+    <h2>Engineering taught me how. Design taught me why.</h2>
+
+    <div class="about-grid">
+      <div>
+        <p>
+          I started out in computer science and engineering, where I got hooked on solving problems 
+          through logic and code. Over time I noticed what was missing for me was the creative side — 
+          and that's what led me to UX/UI design.
+        </p>
+        <p>
+          Today I work on SaaS product interfaces: taking requirements from product managers, turning 
+          them into flows and wireframes, and delivering high-fidelity screens ready for development. 
+          The engineering background stays useful — I understand how interfaces get built, so my designs 
+          account for real constraints and hand over cleanly to developers.
+        </p>
+        <p>
+          Alongside product work, I design logos and brand identities in Adobe Illustrator. 
+          My thesis project is a web-based tool that audits sites against WCAG 2.1, 
+          which I designed and built end to end.
+        </p>
+        <p>
+          I'm looking to keep growing in UX/UI design, on products where I can take features 
+          from requirements through to shipped screens.
+        </p>
+
+        <div class="now">
+          <h3>✦ Currently</h3>
+          <p>
+            Wrapping up my <strong>bachelor's thesis</strong> at TU-Sofia — a WCAG 2.1 audit tool with
+            a full backend, live deployment, and roughly 100 pages of writing behind it. After that,
+            more accessibility work: it's the part of design where the rules are written down and
+            almost nobody follows them.
+          </p>
+        </div>
+      </div>
+
+      <div>
+        <ul class="toolkit">
+          <li>Interface design <span>Figma</span></li>
+          <li>Brand &amp; marks <span>Illustrator</span></li>
+          <li>Build <span>HTML · CSS · JS</span></li>
+          <li>Backend basics <span>Node · Express</span></li>
+          <li>Version control <span>Git</span></li>
+          <li>Standards <span>WCAG 2.1</span></li>
+          <li>Languages <span>EN · BG</span></li>
+        </ul>
+
+        <ul class="edu">
+          <li>
+            <h4>BSc — Technical University of Sofia</h4>
+            <!-- edit these years -->
+            <p>Sofia, Bulgaria · 2022 — 2026</p>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ EXPERIENCE ============ -->
+  <section class="section wrap reveal" id="experience">
+    <p class="eyebrow">Career path</p>
+    <h2>One company, two chapters.</h2>
+    <p class="section-lede">
+      I joined as an intern, learned the product from the component level up, and stayed on as a
+      junior designer when the internship ended.
+    </p>
+
+    <ol class="timeline">
+      <li>
+        <p class="meta"><span>Aug 2025 — Present</span> <span class="here">Now</span></p>
+        <p class="role">Junior UX/UI Designer</p>
+        <p>
+          Same team, wider scope. I own features end to end: reading the spec closely, questioning the
+          cases that overlap, designing the screens, and staying close to the developers through build.
+        </p>
+        <ul>
+          <li>Translate PM requirements into flows, wireframes, and high-fidelity UI in Figma.</li>
+          <li>Push back on requirements that describe the same thing twice — fewer states, fewer bugs.</li>
+          <li>Keep new screens consistent with the existing design system.</li>
+        </ul>
+      </li>
+      <li class="past">
+        <p class="meta"><span>Mar 2025 — Aug 2025</span></p>
+        <p class="role">UX/UI Design Intern</p>
+        <p>
+          Started on component-level work and learned the design system from the inside. By the end of
+          the internship I was owning whole screens, which is how the junior role happened.
+        </p>
+      </li>
+    </ol>
+  </section>
+
+  <!-- ============ SAAS PRODUCT — one project ============ -->
+  <section class="section wrap reveal" id="product">
+    <p class="eyebrow">SaaS product design</p>
+    <h2>Complicated rules, quiet screens.</h2>
+    <p class="section-lede">
+      B2B software carries a lot of logic behind every field. The work is making sure the person using
+      it never has to hold that logic in their head.
+    </p>
+
+    <div class="feature">
+      <!-- swap in a screenshot: name it saas-cover.png and drop it beside this file -->
+      <div class="feature-art" aria-hidden="true">
+        <svg viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round">
+          <rect x="16" y="26" width="68" height="14" rx="4"/>
+          <rect x="16" y="48" width="42" height="14" rx="4"/>
+          <rect x="16" y="70" width="30" height="8" rx="4" stroke="var(--art-accent)"/>
+          <path d="M68 55h16M76 47v16" stroke="var(--art-accent)"/>
+        </svg>
+        <img src="mockup4.png" alt="" onerror="this.remove()">
+      </div>
+      <div class="feature-body">
+        <p class="card-meta">In-house product · 2025—2026 · UX/UI Designer</p>
+        <h3>Torv — a debt collection platform, rebuilt</h3>
+        <p>
+          A legacy collections system turned into a modern SaaS product: invoicing and reminders,
+          payment matching, debtor communication, live calls, analytics and service-line settings —
+          used by teams in utilities, finance and e-commerce.
+        </p>
+        <p>
+          I worked on the screens operators sit in all day, where a lot of financial logic has to
+          stay readable. Fee configuration is one feature inside this product; the full case study
+          covers it alongside the rest.
+        </p>
+        <ul class="tags">
+          <li>Complex data UI</li><li>Flows &amp; edge cases</li><li>Requirements analysis</li><li>Design system</li><li>Figma</li>
+        </ul>
+        <p class="note">Anonymised — company name, branding, copy and data have been reconstructed.</p>
+        <div class="links-row">
+          <a href="#case">Read the full case study →</a>
+          <a href="#case-fees">Jump to fee configuration →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ IDENTITY — two clients ============ -->
+  <section class="section wrap reveal" id="identity">
+    <p class="eyebrow">Logo &amp; identity</p>
+    <h2>One mark that has to work at every size.</h2>
+    <p class="section-lede">
+      Client work in Adobe Illustrator — logos and the design pieces that live around them. Client
+      names left out; the work speaks for itself.
+    </p>
+
+    <div class="grid-2">
+
+      <button class="card" type="button" data-sheet="food">
+        <!-- swap in artwork: name it logo-food.png -->
+        <div class="thumb" aria-hidden="true">
+          <svg viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round">
+            <circle cx="50" cy="50" r="30"/>
+            <path d="M50 20v60M20 50h60" stroke="var(--art-accent)" stroke-dasharray="4 7"/>
+            <circle cx="50" cy="50" r="9" fill="currentColor" stroke="none"/>
+          </svg>
+          <img src="logofood.png" alt="" onerror="this.remove()">
+        </div>
+        <div class="card-body">
+          <p class="card-meta">Client 01 · Food &amp; drink</p>
+          <h3>Logo suite &amp; brand pieces</h3>
+          <p>
+            A full set of marks and supporting design for one client — the primary logo plus the
+            variations and printed pieces it had to live inside.
+          </p>
+          <ul class="tags"><li>Adobe Illustrator</li><li>Logo design</li><li>Type pairing</li></ul>
+          <span class="open">View the work →</span>
+        </div>
+      </button>
+
+    </div>
+  </section>
+
+  <!-- ============ THESIS ============ -->
+  <section class="section wrap reveal" id="thesis">
+    <p class="eyebrow">Thesis project · TU-Sofia</p>
+    <h2>A tool that audits websites against WCAG 2.1.</h2>
+
+    <div class="feature">
+      <div class="feature-body">
+        <p class="card-meta">Designed, built and deployed end to end</p>
+        <h3>Accessibility Checker</h3>
+        <p>
+          Scan any URL and get a result against WCAG 2.1, broken down by criterion. Every audit is
+          stored, so a team can watch whether accessibility is actually improving instead of guessing.
+          I designed the report to open on what to fix — not on how many rules exist.
+        </p>
+        <ul class="tags">
+          <li>Vanilla JavaScript</li><li>Node · Express</li><li>SQLite via sql.js</li><li>Chart.js</li><li>Render</li>
+        </ul>
+        <p class="note">Hosted on a free tier — the first load can take up to a minute while the server wakes up.</p>
+        <div class="links-row">
+          <a href="https://accessibility-checker-un6q.onrender.com" target="_blank" rel="noopener">Open the live tool ↗</a>
+          <a href="https://github.com/Farahsal/accessibility-checker" target="_blank" rel="noopener">Read the code ↗</a>
+          <button type="button" data-sheet="thesis">Full case study →</button>
+        </div>
+      </div>
+
+      <div class="feature-body" style="border-left:1px solid var(--line)">
+        <p class="card-meta">What's inside the tool</p>
+        <ul class="inside">
+          <li><b>Scan</b> — audit any URL against WCAG 2.1 criteria</li>
+          <li><b>History</b> — every past audit, stored and comparable</li>
+          <li><b>Comparisons</b> — how Bulgarian sites measure up</li>
+          <li><b>Guide</b> — the criteria explained in plain language</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CONTACT ============ -->
+  <section class="section wrap reveal" id="contact">
+    <p class="eyebrow">Contact</p>
+    <h2>Got something that needs designing? Send it over.</h2>
+    <a class="mailto" href="mailto:farahsalama17@gmail.com">farahsalama17@gmail.com</a>
+    <div class="contact-side">
+      <a href="https://www.linkedin.com/in/farah-salama-739a802b8" target="_blank" rel="noopener">LinkedIn ↗</a>
+      <a href="https://github.com/Farahsal" target="_blank" rel="noopener">GitHub ↗</a>
+      <a href="#" target="_blank" rel="noopener">Résumé (PDF) ↗</a>
+    </div>
+  </section>
+
+</div><!-- /view-home -->
+
+
+<!-- ============================================================
+     VIEW 2 — SAAS CASE STUDY (same site, own URL: #case)
+     ============================================================ -->
+<div id="case" hidden>
+
+  <!-- ---- case hero ---- -->
+  <section class="case-hero wrap">
+    <a class="back" href="#product">← Back to work</a>
+    <p class="eyebrow">SaaS case study</p>
+    <h1 id="caseTitle" tabindex="-1">Torv— designing <em>trust</em> into a debt collection platform.</h1>
+    <p class="case-lede">
+      A legacy collections system, rebuilt as a modern SaaS product: invoicing, payments, debtor
+      communication, calls, analytics and service-line settings — for teams working in utilities,
+      finance and e-commerce.
+    </p>
+
+    <dl class="facts">
+      <div><dt>Year</dt><dd>2025 — 2026</dd></div>
+      <div><dt>Role</dt><dd>UX/UI Designer</dd></div>
+      <div><dt>Context</dt><dd>In-house product</dd></div>
+      <div><dt>Industries</dt><dd>Utilities · Finance · E-commerce</dd></div>
+    </dl>
+
+    <div class="confidential">
+      <h2>Confidentiality note</h2>
+      <p>
+        This case study is based on real work for my current employer. The company name, product
+        branding, interface copy, customer data and selected screens have been anonymised or
+        reconstructed. "Torv" is a stand-in name.
+      </p>
+    </div>
+
+    <nav class="toc" aria-label="In this case study">
+      <p>In this case study</p>
+      <ol>
+        <li><a href="#case-context">Context</a></li>
+        <li><a href="#case-invoice">Invoice overview</a></li>
+        <li><a href="#case-analytics">Analytics</a></li>
+        <li><a href="#case-calls">Calls</a></li>
+        <li><a href="#case-payments">Payment matching</a></li>
+        <li><a href="#case-communication">Communication</a></li>
+        <li><a href="#case-fees">Fee configuration</a></li>
+      </ol>
+    </nav>
+  </section>
+
+  <!-- ---- context ---- -->
+  <section class="chapter wrap reveal" id="case-context">
+    <p class="eyebrow">Context</p>
+    <h2>A system that worked at an earlier stage, and stopped scaling.</h2>
+
+    <p class="chapter-lede hi">
+      The product manages the full collection journey — invoicing and payment reminders, debtor
+      communication, collection workflows, analytics, and invoice-level detail — for clients across
+      several industries.
+    </p>
+    <p>
+      The redesign was part of a broader move away from a legacy system that had become difficult to
+      use in everyday operational work. It supported the business well enough early on, but its flows
+      were inefficient, its interactions fragmented, and its structure increasingly hard to extend.
+    </p>
+    <p>
+      My role was to shape a more coherent and trustworthy product experience — not only to raise the
+      visual quality of the interface, but to support what operational teams actually do in a
+      high-complexity financial environment, and to give managers something they can make decisions
+      from.
+    </p>
+
+    <ul class="tags">
+      <li>Product UI</li><li>Complex data</li><li>Flows &amp; edge cases</li><li>Design system</li><li>Figma</li>
+    </ul>
+
+    <figure class="shot">
+      <div class="frame" data-file="saas-cover.png"><img src="mockup.png" alt="Overview of the redesigned platform" onerror="this.parentNode.classList.add('empty');this.remove()"></div>
+      <figcaption>Analytics screen.</figcaption>
+    </figure>
+  </section>
+
+  <!-- ---- invoice ---- -->
+  <section class="chapter wrap reveal" id="case-invoice">
+    <p class="eyebrow">Invoice overview</p>
+    <h2>The screen operators live in all day.</h2>
+    <p class="chapter-lede">
+      The invoice overview is the centre of the product. Everything an operator needs to judge a case
+      — what is owed, what has been sent, what came back — has to be readable at a glance.
+    </p>
+
+    <div class="split">
+      <div class="panel">
+        <p class="panel-label">Before</p>
+        <figure class="shot">
+          <div class="frame" data-file="invoice-before.png"><img src="before.png" alt="The legacy invoice overview, split into brief details and an event log" onerror="this.parentNode.classList.add('empty');this.remove()"></div>
+        </figure>
+        <p>
+          A two-part layout: brief invoice information with the management actions on the left, and an
+          event log on the right showing everything that happened to the invoice — when it was sent,
+          through which distribution channel, and its status and stage at each point.
+        </p>
+      </div>
+
+      <div class="panel now">
+        <p class="panel-label">After</p>
+        <figure class="shot">
+          <div class="frame" data-file="invoice-after.png"><img src="after.png" alt="The redesigned invoice overview with finances, event log and manage invoice actions" onerror="this.parentNode.classList.add('empty');this.remove()"></div>
+        </figure>
+        <p>
+          More information, arranged so it reads as less. Alongside the event log and history, the
+          screen now carries the finances behind the invoice — total against remaining amount. Every
+          management action moved under a single <strong>Manage invoice</strong> menu, and operators
+          can compose a new message or reply to a debtor's email directly from the event log.
+        </p>
+      </div>
+    </div>
+
+    <h3>What changed, and why</h3>
+    <ul>
+      <li><strong>One place for actions</strong> — a single menu instead of controls scattered across the page, so nothing is discovered by accident.</li>
+      <li><strong>Money made visible</strong> — remaining amount sits next to the total, because that is the number the conversation is actually about.</li>
+      <li><strong>Reply where the thread is</strong> — answering a debtor happens inside the event log, so the message stays tied to its invoice.</li>
+    </ul>
+  </section>
+
+  <!-- ---- analytics ---- -->
+  <section class="chapter wrap reveal" id="case-analytics">
+    <p class="eyebrow">Analytics</p>
+    <h2>Numbers you can act on, not just look at.</h2>
+    <p class="chapter-lede">
+      The analytics page makes complex collections data easier to read, compare and act on.
+    </p>
+    <p>
+      KPIs are grouped into clear visual sections — DSO trends, receivables aging, payment matching
+      performance — so the page gives a high-level overview first and enough detail underneath to
+      monitor operational health over time. The aim was a calmer reporting experience that supports
+      quick interpretation instead of overwhelming the reader.
+    </p>
+
+    <figure class="shot">
+      <div class="frame" data-file="analytics-1.png"><img src="Analytics.png" alt="Analytics page with DSO trends and receivables aging" onerror="this.parentNode.classList.add('empty');this.remove()"></div>
+      <figcaption>Dashboard screen.</figcaption>
+    </figure>
+    <figure class="shot">
+      <div class="frame" data-file="analytics-2.png"><img src="analytics2.png" alt="Analytics detail view" onerror="this.parentNode.classList.add('empty');this.remove()"></div>
+    </figure>
+  </section>
+
+  <!-- ---- calls ---- -->
+  <section class="chapter wrap reveal" id="case-calls">
+    <p class="eyebrow">Calls</p>
+    <h2>Supervising live conversations without losing context.</h2>
+    <p class="chapter-lede">
+      The Calls page helps operators monitor active conversations, manage queues, and step in when
+      they are needed.
+    </p>
+    <p>
+      An overview of live calls sits next to queue visibility and an AI-assisted support widget, so a
+      supervisor can see volume and detail at the same time, respond faster, and handle busy periods
+      with more confidence. The goal was a real-time workspace where human operators and AI agents
+      work side by side rather than in separate tools.
+    </p>
+
+    <figure class="shot">
+      <div class="frame" data-file="calls-1.png"><img src="calls1.png" alt="Calls page showing live calls, queue and AI support widget" onerror="this.parentNode.classList.add('empty');this.remove()"></div>
+    </figure>
+    <figure class="shot">
+      <div class="frame" data-file="calls-2.png"><img src="calls2.png" alt="Call detail view" onerror="this.parentNode.classList.add('empty');this.remove()"></div>
+    </figure>
+  </section>
+
+  <!-- ---- payments ---- -->
+  <section class="chapter wrap reveal" id="case-payments">
+    <p class="eyebrow">Payments</p>
+    <h2>Matching a payment that doesn't match anything.</h2>
+    <p class="chapter-lede">
+      Not every incoming payment lines up with an invoice. The manual matching flow lets operators
+      resolve those cases in a clear, controlled sequence — with full visibility before anything is
+      confirmed.
+    </p>
+
+    <ol class="flow">
+      <li>
+        <h4>Find the unmatched payments</h4>
+        <p>A grid lists every incoming payment that hasn't been linked to an invoice yet.</p>
+      </li>
+      <li>
+        <h4>Assign it manually</h4>
+        <p>A dedicated matching screen lets the operator link the payment to the right invoice.</p>
+      </li>
+      <li>
+        <h4>Split across items</h4>
+        <p>The amount can be divided across different items within a single invoice; anything left over can be ignored or refunded.</p>
+      </li>
+      <li>
+        <h4>Confirm the allocation</h4>
+        <p>A summary shows exactly how the payment was split, so the operator confirms with full sight of the result.</p>
+      </li>
+    </ol>
+
+    <figure class="shot">
+      <div class="frame" data-file="payments-1.png"><img src="payments1.png" alt="Grid of unmatched incoming payments" onerror="this.parentNode.classList.add('empty');this.remove()"></div>
+      <figcaption>01 Finding the unmatched payments.</figcaption>
+    </figure>
+    <figure class="shot">
+      <div class="frame" data-file="payments-2.png"><img src="payments2.png" alt="Manual payment matching screen" onerror="this.parentNode.classList.add('empty');this.remove()"></div>
+      <figcaption>02 Assigning it manually.</figcaption>
+    </figure>
+    <figure class="shot">
+      <div class="frame" data-file="payments-3.png"><img src="payments3.png" alt="Splitting a payment across invoice items" onerror="this.parentNode.classList.add('empty');this.remove()"></div>
+      <figcaption>03 Split it across.</figcaption>
+    </figure>
+    <figure class="shot">
+      <div class="frame" data-file="payments-4.png"><img src="payments4.png" alt="Summary of the payment split before confirming" onerror="this.parentNode.classList.add('empty');this.remove()"></div>
+      <figcaption>04 Confiriming the allocation.</figcaption>
+    </figure>
+  </section>
+
+  <!-- ---- communication ---- -->
+  <section class="chapter wrap reveal" id="case-communication">
+    <p class="eyebrow">Communication</p>
+    <h2>Everything the customer was told, in one thread.</h2>
+    <p class="chapter-lede">
+      Operators manage customer correspondence inside the system, without switching to external tools.
+    </p>
+    <p>
+      Emails, paper letters, attachments and reply actions live in one structured workspace, which
+      makes it easier to review outstanding cases, respond consistently, and keep every message tied
+      to the invoice it belongs to.
+    </p>
+
+    <figure class="shot">
+      <div class="frame" data-file="comms-1.png"><img src="comms1.png" alt="Communication workspace with emails, letters and attachments" onerror="this.parentNode.classList.add('empty');this.remove()"></div>
+    </figure>
+    <figure class="shot">
+      <div class="frame" data-file="comms-2.png"><img src="comms2.png" alt="Composing a reply to a debtor" onerror="this.parentNode.classList.add('empty');this.remove()"></div>
+    </figure>
+  </section>
+
+  
+
+  <!-- ---- closing ---- -->
+  <section class="next wrap reveal">
+    <p class="eyebrow">Closing</p>
+    <h2>What the redesign is really for.</h2>
+    <p>
+      Collections work is high-stakes and detail-heavy: an operator is looking at someone's money, and
+      a manager is deciding what to do next from the same screen. Most of the design work was deciding
+      what could be pushed one level down without being lost — so the surface stays quiet and the
+      detail is still one click away when it matters.
+    </p>
+    <div class="btn-row">
+      <a class="btn btn-solid" href="#product">← Back to work</a>
+      <a class="btn btn-ghost" href="#contact">Get in touch</a>
+    </div>
+  </section>
+
+</div><!-- /case -->
+
+</main>
+
+<footer class="site-foot wrap">
+  <span>© <span id="year">2026</span> Farah — designed and built by hand.</span>
+  <span>Built to WCAG 2.1 AA.</span>
+</footer>
+
+<!-- ============ MODAL ============ -->
+<div class="overlay" id="overlay" role="dialog" aria-modal="true" aria-labelledby="sheetTitle">
+  <div class="sheet">
+    <button class="sheet-close" type="button" id="sheetClose" aria-label="Close case study">✕</button>
+    <div id="sheetBody"></div>
+  </div>
+</div>
+
+<template id="tpl-food">
+  <p class="kicker">Identity · Client 01</p>
+  <h3 id="sheetTitle">Logo suite &amp; brand pieces</h3>
+  <p class="sub">Food &amp; drink · Adobe Illustrator</p>
+  <ul class="tags"><li>Logo design</li><li>Brand pieces</li><li>Type pairing</li></ul>
+
+  <h4>The brief</h4>
+  <h5>A mark that had to travel</h5>
+  <p>A neighbourhood food & drink brand needed a logo that could carry the same weight on a storefront sign as it did on a to-go cup — legible at a glance, and warm enough to match the place.</p>
+
+  <h4>The process</h4>
+  <p>I explored a handful of directions before settling on a simple, geometric mark paired with a softer type, so the logo stayed confident while the type kept it approachable. The final lockup was tested at the smallest sizes it would actually be used at, not just at presentation size.</p>
+
+  <h4>Where it could live</h4>
+  <p>Signage, packaging, menus, and social — the primary mark plus the variations it needed to hold up consistently across every surface.</p>
+
+  <h4>The work</h4>
+  <p>Designs</p>
+  <div class="gallery">
+    <img src="cartoonlogoportfolio3.png" alt="Logo artwork" onerror="this.remove()">
+    <img src="cartoonlogoportfolio2.png" alt="Logo artwork" onerror="this.remove()">
+  </div>
+</template>
+
+<template id="tpl-cap">
+  <p class="kicker">Identity · Client 02</p>
+  <h3 id="sheetTitle">Posters</h3>
+  <p class="sub">Bar · Adobe Illustrator</p>
+  <ul class="tags"><li>Logo design</li><li>Small-scale legibility</li></ul>
+
+  <h4>The constraint</h4>
+  <h5>It had to survive 12mm</h5>
+  <p>A bottle cap is one of the smallest surfaces a logo ever has to hold. Every detail that reads beautifully on screen either simplifies or disappears at that size, so the mark was drawn for the smallest use first and scaled up from there.</p>
+
+  <h4>The process</h4>
+  <p>Add how you got there: the shapes you tried, what you cut, and how you tested it. Printing at final size before committing is worth mentioning.</p>
+
+  <h4>The work</h4>
+  <p>Add your artwork here. Name the files cap-1.png, cap-2.png and so on, drop them beside index.html, and delete any img tag you don't use.</p>
+  <div class="gallery">
+    <img src="cap-1.png" alt="Logo artwork" onerror="this.remove()">
+    <img src="cap-2.png" alt="Logo artwork" onerror="this.remove()">
+  </div>
+</template>
+
+<template id="tpl-thesis">
+  <p class="kicker">Bachelor's thesis · TU-Sofia</p>
+  <h3 id="sheetTitle">WCAG 2.1 Accessibility Checker</h3>
+  <p class="sub">Designed, built, and deployed end to end</p>
+  <ul class="tags"><li>Vanilla JavaScript</li><li>Node · Express</li><li>sql.js (WebAssembly)</li><li>Chart.js</li><li>Render</li></ul>
+
+  <h4>Overview</h4>
+  <h5>What it does</h5>
+  <p>Scan any URL and get a result against WCAG 2.1, broken down by criterion. Every audit is stored, so a team can watch whether accessibility is actually improving instead of guessing. There's also a comparison view for Bulgarian sites and a built-in guide to the criteria themselves.</p>
+
+  <h4>The problem</h4>
+  <h5>Rules that nobody checks</h5>
+  <p>WCAG is public, detailed, and largely ignored — not because teams disagree with it, but because checking it is tedious. A tool that makes the check cheap changes the odds that it happens.</p>
+
+  <h4>How it evolved</h4>
+  <h5>Three versions, one lesson</h5>
+  <ul>
+    <li><strong>v1</strong> — frontend only: vanilla JavaScript, no frameworks, no build tools. Ran into CORS immediately and solved it with a proxy.</li>
+    <li><strong>v2</strong> — added a backend after feedback that the tool needed to accumulate data to mean anything. First pass used NeDB.</li>
+    <li><strong>v3</strong> — moved to sql.js, a pure-JavaScript SQLite compiled to WebAssembly, which made the database portable and the deployment simple.</li>
+  </ul>
+
+  <h4>Design decisions</h4>
+  <ul>
+    <li><strong>Fixes first</strong> — the report opens on what to change, not on a count of how many rules exist.</li>
+    <li><strong>History as the point</strong> — a single result is noise; the trend is the product.</li>
+    <li><strong>Graceful data</strong> — comparison figures start from stored baselines and upgrade in the background when a live fetch succeeds, so the page is never empty while it waits.</li>
+    <li><strong>A sidebar, not a wizard</strong> — scan, history, comparisons, and the WCAG guide are four places you can be, not four steps you march through.</li>
+  </ul>
+
+  <h4>What I learned</h4>
+  <p>Building it myself is why I trust the design. Every accessibility rule I put in the tool is one I've had to implement, and the ones that are annoying to satisfy are exactly the ones teams skip.</p>
+
+  <!-- <h4>Screens</h4>
+  <p>Add screenshots of the tool here. Name them thesis-1.png, thesis-2.png and so on.</p>
+  <div class="gallery">
+    <img src="thesis-1.png" alt="Accessibility checker screen" onerror="this.remove()">
+    <img src="thesis-2.png" alt="Accessibility checker screen" onerror="this.remove()">
+    <img src="thesis-3.png" alt="Accessibility checker screen" onerror="this.remove()">
+  </div>  -->
+
+  <h4>Links</h4>
+  <p>
+    <a href="https://accessibility-checker-un6q.onrender.com" target="_blank" rel="noopener">Open the live tool ↗</a><br>
+    <a href="https://github.com/Farahsal/accessibility-checker" target="_blank" rel="noopener">Read the code ↗</a>
+  </p>
+</template>
+
+<script>
+(function () {
+  'use strict';
+
+  var overlay = document.getElementById('overlay');
+  var body = document.getElementById('sheetBody');
+  var closeBtn = document.getElementById('sheetClose');
+  var lastFocus = null;
+
+  function openSheet(key) {
+    var tpl = document.getElementById('tpl-' + key);
+    if (!tpl) return;
+    lastFocus = document.activeElement;
+    body.innerHTML = '';
+    body.appendChild(tpl.content.cloneNode(true));
+    overlay.classList.add('open');
+    document.body.classList.add('locked');
+    overlay.scrollTop = 0;
+    closeBtn.focus();
+  }
+  function closeSheet() {
+    overlay.classList.remove('open');
+    document.body.classList.remove('locked');
+    body.innerHTML = '';
+    if (lastFocus) lastFocus.focus();
+  }
+
+  document.addEventListener('click', function (e) {
+    var trigger = e.target.closest('[data-sheet]');
+    if (trigger) { e.preventDefault(); openSheet(trigger.getAttribute('data-sheet')); return; }
+    if (e.target === overlay) closeSheet();
+  });
+  closeBtn.addEventListener('click', closeSheet);
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && overlay.classList.contains('open')) closeSheet();
+  });
+
+  /* ---------- two views, one page ---------- */
+  var viewHome = document.getElementById('view-home');
+  var viewCase = document.getElementById('case');
+  var caseTitle = document.getElementById('caseTitle');
+  var homeTitle = 'Farah — UX/UI Designer';
+  var caseTitleText = 'Fjord — debt collection SaaS · Case study — Farah';
+
+  function markNav(onCase) {
+    var links = document.querySelectorAll('.site-nav a');
+    Array.prototype.forEach.call(links, function (a) {
+      if (a.getAttribute('href') === '#case') {
+        if (onCase) a.setAttribute('aria-current', 'page');
+        else a.removeAttribute('aria-current');
+      }
+    });
+  }
+
+  function route(smooth) {
+    var hash = location.hash || '';
+    var onCase = hash.indexOf('#case') === 0;
+
+    viewCase.hidden = !onCase;
+    viewHome.hidden = onCase;
+    document.title = onCase ? caseTitleText : homeTitle;
+    markNav(onCase);
+
+    var target = hash.length > 1 ? document.getElementById(hash.slice(1)) : null;
+    var behavior = (smooth && !calm) ? 'smooth' : 'auto';
+
+    if (target && target !== viewCase) {
+      target.scrollIntoView({ behavior: behavior, block: 'start' });
+    } else {
+      window.scrollTo({ top: 0, behavior: behavior });
+      if (onCase && caseTitle) caseTitle.focus({ preventScroll: true });
+    }
+  }
+
+  window.addEventListener('hashchange', function () { route(true); });
+
+  var calm = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var blocks = document.querySelectorAll('.reveal');
+  if (calm || !('IntersectionObserver' in window)) {
+    Array.prototype.forEach.call(blocks, function (el) { el.classList.add('in'); });
+  } else {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) { entry.target.classList.add('in'); io.unobserve(entry.target); }
+      });
+    }, { rootMargin: '0px 0px -10% 0px' });
+    Array.prototype.forEach.call(blocks, function (el) { io.observe(el); });
+  }
+
+  /* ---------- night mode ---------- */
+  var root = document.documentElement;
+  var toggle = document.getElementById('themeToggle');
+
+  function paint() {
+    var dark = root.getAttribute('data-theme') === 'dark';
+    toggle.setAttribute('aria-pressed', String(dark));
+    toggle.setAttribute('aria-label', dark ? 'Switch to light mode' : 'Switch to dark mode');
+  }
+  toggle.addEventListener('click', function () {
+    var dark = root.getAttribute('data-theme') === 'dark';
+    if (dark) root.removeAttribute('data-theme');
+    else root.setAttribute('data-theme', 'dark');
+    try { localStorage.setItem('theme', dark ? 'light' : 'dark'); } catch (e) {}
+    paint();
+  });
+  paint();
+
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  route(false);
+})();
+</script>
+</body>
+</html>
